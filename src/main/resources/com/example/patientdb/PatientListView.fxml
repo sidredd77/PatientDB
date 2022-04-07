@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.patientdb.PatientListController">
    <children>
-      <TableView layoutX="173.0" layoutY="84.0" prefHeight="228.0" prefWidth="227.0">
+      <TableView fx:id="table" layoutX="174.0" layoutY="85.0" prefHeight="257.0" prefWidth="308.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Last Name" />
-          <TableColumn prefWidth="75.0" text="First Name" />
-            <TableColumn prefWidth="75.0" text="Age" />
+          <TableColumn fx:id="lastNameColumn" prefWidth="75.0" text="Last Name" />
+          <TableColumn fx:id="firstNameColumn" prefWidth="75.0" text="First Name" />
+            <TableColumn fx:id="ageColumn" prefWidth="75.0" text="Age" />
+            <TableColumn fx:id="WBCColumn" prefWidth="75.0" text="WBC Count" />
         </columns>
       </TableView>
+      <Button layoutX="473.0" layoutY="14.0" mnemonicParsing="false" text="NEW" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
    </children>
 </AnchorPane>

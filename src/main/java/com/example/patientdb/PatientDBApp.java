@@ -12,7 +12,7 @@ public class PatientDBApp extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(PatientDBApp.class.getResource("PatientListView.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        stage.setTitle("Patient");
         stage.setScene(scene);
         stage.show();
     }
