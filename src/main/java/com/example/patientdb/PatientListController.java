@@ -2,12 +2,13 @@ package com.example.patientdb;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.*;
+
+import static java.lang.Integer.parseInt;
+
 public class PatientListController {
 
 
@@ -21,6 +22,8 @@ public class PatientListController {
     private TableView table;
     @FXML
     private TableColumn WBCColumn;
+    @FXML
+    private Button BtnNew;
 
     public void initialize() {
         List patientList = new ArrayList();
@@ -34,5 +37,52 @@ public class PatientListController {
         ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
         WBCColumn.setCellValueFactory(new PropertyValueFactory<>("whiteCellCount"));
         table.setItems(FXCollections.observableList(patientList));
+    }
+    public void buttonPress(){
+
+        List PatientList = table.getItems();
+
+        String firstName ="";
+        String lastName ="";
+        int age = 0;
+        int WBC = 0;
+        TextInputDialog dialog = new TextInputDialog("");
+        dialog.setTitle("Text Input Dialog");
+        dialog.setHeaderText("Look, a Text Input Dialog");
+        dialog.setContentText("Please enter your First name:");
+
+        Optional<String> result = dialog.showAndWait();
+
+        if (result.isPresent()){
+            firstName = result.get();
+
+        }
+        dialog = new TextInputDialog("");
+        dialog.setContentText("What is your last name");
+        Optional<String> result2 = dialog.showAndWait();
+        if (result2.isPresent()){
+            lastName = result2.get();
+
+        }
+        dialog = new TextInputDialog("");
+        dialog.setContentText("What is your White Blood Cell Count");
+        Optional<String> result3 = dialog.showAndWait();
+        if (result3.isPresent()){
+            try(){
+                WBC = parseInt(result3.get());
+            }
+            catch{
+
+            }
+
+        }
+        dialog = new TextInputDialog("");
+        dialog.setContentText("What is your age");
+        Optional<String> result4 = dialog.showAndWait();
+        if (result4.isPresent()){
+            age = parseInt(result4.get());
+
+        }
+        PatientList.add(new Patient(firstName, lastName, age, WBC));
     }
 }
