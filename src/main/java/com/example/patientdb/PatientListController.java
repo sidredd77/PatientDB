@@ -5,6 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.*;
 
 import static java.lang.Integer.parseInt;
@@ -57,6 +60,9 @@ public class PatientListController {
             firstName = result.get();
 
         }
+        else {
+            return;
+        }
         dialog = new TextInputDialog("");
         dialog.setContentText("What is your last name");
         Optional<String> result2 = dialog.showAndWait();
@@ -64,25 +70,54 @@ public class PatientListController {
             lastName = result2.get();
 
         }
+        else {
+            return;
+        }
         dialog = new TextInputDialog("");
         dialog.setContentText("What is your White Blood Cell Count");
         Optional<String> result3 = dialog.showAndWait();
         if (result3.isPresent()){
-            try(){
+            try{
                 WBC = parseInt(result3.get());
             }
-            catch(NumberFormatException){
-                System.out.println("stop");
+            catch(NumberFormatException n){
+                System.out.println("Don't do that");
             }
 
+
+        }
+        else {
+            return;
         }
         dialog = new TextInputDialog("");
         dialog.setContentText("What is your age");
         Optional<String> result4 = dialog.showAndWait();
         if (result4.isPresent()){
-            age = parseInt(result4.get());
+            try{
+                age = parseInt(result4.get());
+            }
+            catch(NumberFormatException n){
+                System.out.println("Don't do that");
+            }
 
         }
-        PatientList.add(new Patient(firstName, lastName, age, WBC));
+        else {
+            return;
+        }
+
+
+         Patient e = new Patient(firstName, lastName, age, WBC);
+        PatientList.add(e);
+        try {
+            FileOutputStream fileOut =
+                    new FileOutputStream("PatientDB.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(e);
+            out.close();
+            fileOut.close();
+            System.out.printf("Serialized data is saved in PatientDB.ser");
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
     }
 }
