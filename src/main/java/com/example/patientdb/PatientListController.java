@@ -71,8 +71,8 @@ public class PatientListController {
             try(){
                 WBC = parseInt(result3.get());
             }
-            catch{
-
+            catch(NumberFormatException){
+                System.out.println("stop");
             }
 
         }
