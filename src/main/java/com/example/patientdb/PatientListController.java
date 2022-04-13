@@ -1,13 +1,12 @@
 package com.example.patientdb;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.*;
 
 import static java.lang.Integer.parseInt;
@@ -30,11 +29,22 @@ public class PatientListController {
 
     public void initialize() {
         List patientList = new ArrayList();
-        patientList.add(new Patient("Alison", "Apple", 49, 5000));
-        patientList.add(new Patient("Bill", "Baker", 18, 1001));
-        patientList.add(new Patient("Curt", "Cartwright", 37, 10500));
-        patientList.add(new Patient("Dilan", "Dolan", 76, 789));
 
+
+        try {
+            FileInputStream fileIn = new FileInputStream("PatientDB.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            patientList= (ArrayList<Patient>) in.readObject();
+            in.close();
+            fileIn.close();
+        } catch (IOException i) {
+            i.printStackTrace();
+            return;
+        } catch (ClassNotFoundException c) {
+            System.out.println("not found");
+            c.printStackTrace();
+            return;
+        }
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
@@ -43,7 +53,7 @@ public class PatientListController {
     }
     public void buttonPress(){
 
-        List PatientList = table.getItems();
+        ObservableList PatientList = table.getItems();
 
         String firstName ="";
         String lastName ="";
@@ -106,13 +116,14 @@ public class PatientListController {
         }
 
 
-         Patient e = new Patient(firstName, lastName, age, WBC);
+        Patient e = new Patient(firstName, lastName, age, WBC);
         PatientList.add(e);
         try {
+            ArrayList <Patient> change = new ArrayList(PatientList);
             FileOutputStream fileOut =
                     new FileOutputStream("PatientDB.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(e);
+            out.writeObject(change);
             out.close();
             fileOut.close();
             System.out.printf("Serialized data is saved in PatientDB.ser");
