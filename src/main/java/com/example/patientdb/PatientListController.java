@@ -7,6 +7,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 import static java.lang.Integer.parseInt;
@@ -39,11 +41,11 @@ public class PatientListController {
             fileIn.close();
         } catch (IOException i) {
             i.printStackTrace();
-            return;
+
         } catch (ClassNotFoundException c) {
             System.out.println("not found");
             c.printStackTrace();
-            return;
+
         }
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -119,16 +121,21 @@ public class PatientListController {
         Patient e = new Patient(firstName, lastName, age, WBC);
         PatientList.add(e);
         try {
-            ArrayList <Patient> change = new ArrayList(PatientList);
-            FileOutputStream fileOut =
-                    new FileOutputStream("PatientDB.ser");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(change);
-            out.close();
-            fileOut.close();
-            System.out.printf("Serialized data is saved in PatientDB.ser");
-        } catch (IOException i) {
-            i.printStackTrace();
-        }
+            if (!Files.exists(Paths.get(System.getProperty("user.home")+"/.patientDB"))){
+                Files.createDirectory(Paths.get(System.getProperty("user.home")+"/.patientDB"));
+            }
+
+                ArrayList<Patient> change = new ArrayList(PatientList);
+                FileOutputStream fileOut =
+                        new FileOutputStream(System.getProperty("user.home")+"/.patientDB"+ "/.PatientDB.ser");
+                ObjectOutputStream out = new ObjectOutputStream(fileOut);
+                out.writeObject(change);
+                out.close();
+                fileOut.close();
+                System.out.printf("Serialized data is saved in PatientDB.ser");
+            } catch(IOException i){
+                i.printStackTrace();
+            }
+
     }
 }
