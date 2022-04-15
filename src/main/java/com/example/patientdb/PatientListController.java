@@ -138,4 +138,8 @@ public class PatientListController {
             }
 
     }
+    public void ClickedOn(){
+        Patient p = (Patient) table.getSelectionModel().getSelectedItem();
+        PatientDBApp.SwitchPatientView(p);
+    }
 }
