@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.patientdb.PatientListController">
    <children>
-      <TableView fx:id="table" layoutX="174.0" layoutY="85.0" prefHeight="257.0" prefWidth="308.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+      <TableView fx:id="table" layoutX="174.0" layoutY="85.0" onMouseClicked="#ClickedOn" prefHeight="257.0" prefWidth="308.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
         <columns>
           <TableColumn fx:id="lastNameColumn" prefWidth="75.0" text="Last Name" />
           <TableColumn fx:id="firstNameColumn" prefWidth="75.0" text="First Name" />

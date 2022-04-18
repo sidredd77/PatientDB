@@ -34,7 +34,7 @@ public class PatientListController {
 
 
         try {
-            FileInputStream fileIn = new FileInputStream("PatientDB.ser");
+            FileInputStream fileIn = new FileInputStream(System.getProperty("user.home")+"/.patientDB"+ "/.PatientDB.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
             patientList= (ArrayList<Patient>) in.readObject();
             in.close();
@@ -138,8 +138,9 @@ public class PatientListController {
             }
 
     }
-    public void ClickedOn(){
+    @FXML
+    public void ClickedOn() throws IOException {
         Patient p = (Patient) table.getSelectionModel().getSelectedItem();
         PatientDBApp.SwitchPatientView(p);
-    }
+   }
 }

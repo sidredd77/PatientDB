@@ -20,13 +20,13 @@ public class PatientDBApp extends Application {
         this.stage1 = stage;
     }
 
-    public void SwitchPatientView(Patient p){
+    public  static void SwitchPatientView(Patient p) throws IOException{
         FXMLLoader loader = new FXMLLoader(PatientDBApp.class.getResource("PatientView.fxml"));
         Parent root = loader.load();
         Scene myScene = new Scene(root);
         PatientViewController patientController = loader.getController();
         // Your code here: pass the patient to the patientController...
-        this.stage1.setScene(myScene); // the initialize method will get called in here
+        stage1.setScene(myScene); // the initialize method will get called in here
 
     }
 
