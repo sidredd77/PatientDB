@@ -42,4 +42,16 @@ public class Patient implements Serializable {
     public String toString(){
         return lastName+", "+firstName+" ("+age+"): WBCC: "+whiteCellCount;
     }
+    public void setAge(int i){
+        this.age = i;
+    }
+    public void setFirstName(String s){
+        this.firstName = s;
+    }
+    public void setLastName(String s){
+        this.lastName = s;
+    }
+    public void setWBC(int i){
+        this.whiteCellCount = i;
+    }
 }
