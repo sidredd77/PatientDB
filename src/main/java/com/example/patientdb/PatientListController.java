@@ -143,4 +143,8 @@ public class PatientListController {
         Patient p = (Patient) table.getSelectionModel().getSelectedItem();
         PatientDBApp.SwitchPatientView(p);
    }
+   public void refresh(){
+        table.refresh();
+
+    }
 }

@@ -20,9 +20,20 @@ public class PatientDBApp extends Application {
         scene1 = scene;
         stage.show();
         this.stage1 = stage;
+
+
+
     }
     public static void SwitchListView() throws IOException{
+
+
+        Parent root = loader.load();
+        Scene myScene = new Scene(root);
+        PatientListController patientController = loader.getController();
         stage1.setScene(scene1);
+        patientController.refresh();
+
+
 
     }
 
