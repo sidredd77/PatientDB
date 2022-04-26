@@ -10,42 +10,46 @@ import java.io.IOException;
 
 public class PatientDBApp extends Application {
     private static Stage stage1;
-    private static Scene scene1;
+    private static Scene PatientScene;
+    private static Scene ListScene;
+
+    private static PatientListController patientController;
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(PatientDBApp.class.getResource("PatientListView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Patient");
-        stage.setScene(scene);
-        scene1 = scene;
-        stage.show();
-        this.stage1 = stage;
-
-
+        FXMLLoader loader = new FXMLLoader(PatientDBApp.class.getResource("PatientListView.fxml"));
+        stage1 = stage;
+        Parent root = loader.load();
+        ListScene = new Scene(root);
+        patientController = loader.getController();
+        patientController.restart();
+        // Your code here: pass the patient to the patientController...
+        stage1.setScene(ListScene); // the initialize method will get called in here
+        stage1.show();
 
     }
     public static void SwitchListView() throws IOException{
 
 
-        Parent root = loader.load();
-        Scene myScene = new Scene(root);
-        PatientListController patientController = loader.getController();
-        stage1.setScene(scene1);
-        patientController.refresh();
+        stage1.setScene(ListScene);
+        patientController.restart();
 
 
 
     }
 
     public  static void SwitchPatientView(Patient p) throws IOException{
-        FXMLLoader loader = new FXMLLoader(PatientDBApp.class.getResource("PatientView.fxml"));
-        Parent root = loader.load();
-        Scene myScene = new Scene(root);
-        PatientViewController patientController = loader.getController();
-        patientController.setPatient(p);
-        // Your code here: pass the patient to the patientController...
-        stage1.setScene(myScene); // the initialize method will get called in here
-
+        if (PatientScene == null) {
+            FXMLLoader loader = new FXMLLoader(PatientDBApp.class.getResource("PatientView.fxml"));
+            Parent root = loader.load();
+            PatientScene = new Scene(root);
+            PatientViewController patientController = loader.getController();
+            patientController.setPatient(p);
+            // Your code here: pass the patient to the patientController...
+            stage1.setScene(PatientScene); // the initialize method will get called in here
+        }
+        else{
+            stage1.setScene(PatientScene);
+        }
     }
 
 

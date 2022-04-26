@@ -120,22 +120,24 @@ public class PatientListController {
 
         Patient e = new Patient(firstName, lastName, age, WBC);
         PatientList.add(e);
-        try {
-            if (!Files.exists(Paths.get(System.getProperty("user.home")+"/.patientDB"))){
-                Files.createDirectory(Paths.get(System.getProperty("user.home")+"/.patientDB"));
-            }
+        public void serialize() {
+            try {
+                if (!Files.exists(Paths.get(System.getProperty("user.home") + "/.patientDB"))) {
+                    Files.createDirectory(Paths.get(System.getProperty("user.home") + "/.patientDB"));
+                }
 
                 ArrayList<Patient> change = new ArrayList(PatientList);
                 FileOutputStream fileOut =
-                        new FileOutputStream(System.getProperty("user.home")+"/.patientDB"+ "/.PatientDB.ser");
+                        new FileOutputStream(System.getProperty("user.home") + "/.patientDB" + "/.PatientDB.ser");
                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
                 out.writeObject(change);
                 out.close();
                 fileOut.close();
                 System.out.printf("Serialized data is saved in PatientDB.ser");
-            } catch(IOException i){
+            } catch (IOException i) {
                 i.printStackTrace();
             }
+        }
 
     }
     @FXML
@@ -143,7 +145,7 @@ public class PatientListController {
         Patient p = (Patient) table.getSelectionModel().getSelectedItem();
         PatientDBApp.SwitchPatientView(p);
    }
-   public void refresh(){
+   public void restart(){
         table.refresh();
 
     }
