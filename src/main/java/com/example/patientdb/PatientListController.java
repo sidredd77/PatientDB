@@ -120,7 +120,7 @@ public class PatientListController {
 
         Patient e = new Patient(firstName, lastName, age, WBC);
         PatientList.add(e);
-        public void serialize() {
+        public  void serialize(){
             try {
                 if (!Files.exists(Paths.get(System.getProperty("user.home") + "/.patientDB"))) {
                     Files.createDirectory(Paths.get(System.getProperty("user.home") + "/.patientDB"));
@@ -147,6 +147,7 @@ public class PatientListController {
    }
    public void restart(){
         table.refresh();
+
 
     }
 }

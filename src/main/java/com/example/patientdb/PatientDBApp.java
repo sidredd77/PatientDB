@@ -35,6 +35,7 @@ public class PatientDBApp extends Application {
 
 
 
+
     }
 
     public  static void SwitchPatientView(Patient p) throws IOException{
