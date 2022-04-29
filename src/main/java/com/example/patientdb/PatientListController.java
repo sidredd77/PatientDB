@@ -29,14 +29,16 @@ public class PatientListController {
     @FXML
     private Button BtnNew;
 
+    private static List PatientList;
+
     public void initialize() {
-        List patientList = new ArrayList();
+
 
 
         try {
             FileInputStream fileIn = new FileInputStream(System.getProperty("user.home")+"/.patientDB"+ "/.PatientDB.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            patientList= (ArrayList<Patient>) in.readObject();
+            PatientList= (ArrayList<Patient>) in.readObject();
             in.close();
             fileIn.close();
         } catch (IOException i) {
@@ -51,7 +53,7 @@ public class PatientListController {
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
         WBCColumn.setCellValueFactory(new PropertyValueFactory<>("whiteCellCount"));
-        table.setItems(FXCollections.observableList(patientList));
+        table.setItems(FXCollections.observableList(PatientList));
     }
     public void buttonPress(){
 
@@ -120,25 +122,26 @@ public class PatientListController {
 
         Patient e = new Patient(firstName, lastName, age, WBC);
         PatientList.add(e);
-        public  void serialize(){
-            try {
-                if (!Files.exists(Paths.get(System.getProperty("user.home") + "/.patientDB"))) {
-                    Files.createDirectory(Paths.get(System.getProperty("user.home") + "/.patientDB"));
-                }
-
-                ArrayList<Patient> change = new ArrayList(PatientList);
-                FileOutputStream fileOut =
-                        new FileOutputStream(System.getProperty("user.home") + "/.patientDB" + "/.PatientDB.ser");
-                ObjectOutputStream out = new ObjectOutputStream(fileOut);
-                out.writeObject(change);
-                out.close();
-                fileOut.close();
-                System.out.printf("Serialized data is saved in PatientDB.ser");
-            } catch (IOException i) {
-                i.printStackTrace();
+        this.PatientList = PatientList;
+        serialize();
+    }
+    public void serialize() {
+        try {
+            if (!Files.exists(Paths.get(System.getProperty("user.home") + "/.patientDB"))) {
+                Files.createDirectory(Paths.get(System.getProperty("user.home") + "/.patientDB"));
             }
-        }
 
+            ArrayList<Patient> change = new ArrayList(PatientList);
+            FileOutputStream fileOut =
+                    new FileOutputStream(System.getProperty("user.home") + "/.patientDB" + "/.PatientDB.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(change);
+            out.close();
+            fileOut.close();
+            System.out.printf("Serialized data is saved in PatientDB.ser");
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
     }
     @FXML
     public void ClickedOn() throws IOException {
