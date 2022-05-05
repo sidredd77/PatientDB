@@ -5,9 +5,9 @@ import java.io.Serializable;
 public class Settings implements Serializable {
     private int fontSize;
     private static Settings instance;
-    public Settings() {
+    private Settings() {
     }
-    public int getFSize(){
+    public static int getFSize(){
        return instance.getFSize();
     }
 }
