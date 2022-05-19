@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.patientdb.PatientListController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.patientdb.PatientListController">
    <children>
       <TableView fx:id="table" layoutX="174.0" layoutY="85.0" onMouseClicked="#ClickedOn" prefHeight="257.0" prefWidth="308.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
         <columns>
@@ -16,5 +16,6 @@
         </columns>
       </TableView>
       <Button layoutX="473.0" layoutY="14.0" mnemonicParsing="false" onAction="#buttonPress" text="NEW" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <Button layoutX="41.0" layoutY="10.0" mnemonicParsing="false" onAction="#SettingsSceneChange" text="Settings" />
    </children>
 </AnchorPane>

@@ -21,6 +21,9 @@ public class PatientDBApp extends Application {
 
     private static PatientViewController patientViewController;
 
+    private static SettingsViewController SettingsController;
+    private static Scene SettingsScene;
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(PatientDBApp.class.getResource("PatientListView.fxml"));
@@ -44,6 +47,7 @@ public class PatientDBApp extends Application {
 
     }
 
+
     public  static void SwitchPatientView(Patient p) throws IOException{
         if (PatientScene == null) {
             FXMLLoader loader = new FXMLLoader(PatientDBApp.class.getResource("PatientView.fxml"));
@@ -61,6 +65,24 @@ public class PatientDBApp extends Application {
             patientViewController.setPatient(p);
         }
     }
+    public  static void SwitchSettingsView() throws IOException{
+        if (SettingsScene == null) {
+            FXMLLoader loader = new FXMLLoader(PatientDBApp.class.getResource("SettingsView.fxml"));
+            Parent root = loader.load();
+            SettingsScene = new Scene(root);
+            SettingsController = loader.getController();
+
+            // Your code here: pass the patient to the patientController...
+            stage1.setScene(SettingsScene); // the initialize method will get called in here
+
+        }
+        else{
+
+            stage1.setScene(SettingsScene);
+
+        }
+    }
+
 
 
     public static void main(String[] args) {

@@ -153,4 +153,9 @@ public class PatientListController {
 
 
     }
+    @FXML
+    public void SettingsSceneChange() throws IOException {
+
+        PatientDBApp.SwitchSettingsView();
+    }
 }
