@@ -2,6 +2,8 @@ package com.example.patientdb;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -11,9 +13,17 @@ public class SettingsViewController {
     @FXML
     private Button Done;
     @FXML
+    private static TextField SettingsType;
+
+
+    @FXML
     public void DoneClickedOn() throws IOException {
+        if (this.SettingsType != null) {
+            String ageStr = this.SettingsType.getText();
+            Settings.setFSize(Integer.parseInt(ageStr));
             try {
-                FileOutputStream fileOut = new FileOutputStream("settings.ser");
+                FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.home") + "/.patientDB" + "/.Settings.ser");
+                ;
                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
                 out.writeObject(Settings.getInstance());
                 out.close();
@@ -23,7 +33,16 @@ public class SettingsViewController {
                 i.printStackTrace();
             }
 
-            PatientDBApp.SwitchListView();
+
+
         }
+        PatientDBApp.SwitchListView();
+    }
+    public static void setSettings(){
+
+        SettingsType.setText(Integer.toString(Settings.getFSize()));
+
+    }
+
     }
 

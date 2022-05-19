@@ -12,7 +12,7 @@ public class Settings implements Serializable {
 
         if (Settings.instance == null) {
             try {
-                FileInputStream fileIn = new FileInputStream(System.getProperty("\"settings.ser\"");
+                FileInputStream fileIn = new FileInputStream(System.getProperty("user.home")+"/.patientDB"+ "/.Settings.ser");
                 ObjectInputStream in = new ObjectInputStream(fileIn);
                 instance= (Settings )in.readObject();
                 in.close();
@@ -26,6 +26,8 @@ public class Settings implements Serializable {
 
 
         }
+
+        }
         return instance.getFSize();
     }
     public static Settings getInstance(){
@@ -34,10 +36,28 @@ public class Settings implements Serializable {
     public static void setFSize(int fontSize1){
 
         if (Settings.instance == null) {
-            Settings.instance = new Settings();
+            try {
+                FileInputStream fileIn = new FileInputStream(System.getProperty("user.home")+"/.patientDB"+ "/.Settings.ser");
+                ObjectInputStream in = new ObjectInputStream(fileIn);
+                instance= (Settings )in.readObject();
+                in.close();
+                fileIn.close();
+            } catch (IOException i) {
+                Settings.instance = new Settings();
+
+            } catch (ClassNotFoundException c) {
+                System.out.println("not found");
+                c.printStackTrace();
+
+
+            }
+
         }
         instance.setFSize(fontSize1);
+
     }
-
-
 }
+
+
+
+

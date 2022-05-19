@@ -31,6 +31,9 @@ public class PatientListController {
 
     private static List PatientList;
 
+    @FXML
+    private static Label SettingsLabel;
+
     public void initialize() {
 
 
