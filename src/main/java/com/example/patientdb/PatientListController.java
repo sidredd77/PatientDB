@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Font;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -32,7 +33,7 @@ public class PatientListController {
     private static List PatientList;
 
     @FXML
-    private static Label SettingsLabel;
+    private static Label settingsLabel;
 
     public void initialize() {
 
@@ -155,10 +156,15 @@ public class PatientListController {
         table.refresh();
 
 
+
+
     }
     @FXML
     public void SettingsSceneChange() throws IOException {
 
         PatientDBApp.SwitchSettingsView();
+    }
+    public void settingsRestart(){
+        settingsLabel.setFont(new Font((double) Settings.getFSize()));
     }
 }

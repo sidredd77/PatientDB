@@ -13,13 +13,13 @@ public class SettingsViewController {
     @FXML
     private Button Done;
     @FXML
-    private static TextField SettingsType;
+    private TextField settingsType;
 
 
     @FXML
     public void DoneClickedOn() throws IOException {
-        if (this.SettingsType != null) {
-            String ageStr = this.SettingsType.getText();
+        if (this.settingsType != null) {
+            String ageStr = this.settingsType.getText();
             Settings.setFSize(Integer.parseInt(ageStr));
             try {
                 FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.home") + "/.patientDB" + "/.Settings.ser");
@@ -38,11 +38,11 @@ public class SettingsViewController {
         }
         PatientDBApp.SwitchListView();
     }
-    public static void setSettings(){
+        public void setSettings(){
 
-        SettingsType.setText(Integer.toString(Settings.getFSize()));
+            settingsType.setText(Integer.toString(Settings.getFSize()));
 
-    }
+        }
 
     }
 

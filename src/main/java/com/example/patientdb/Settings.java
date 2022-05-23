@@ -28,7 +28,7 @@ public class Settings implements Serializable {
         }
 
         }
-        return instance.getFSize();
+        return instance.fontSize;
     }
     public static Settings getInstance(){
         return instance;
@@ -53,7 +53,7 @@ public class Settings implements Serializable {
             }
 
         }
-        instance.setFSize(fontSize1);
+        instance.fontSize = fontSize1;
 
     }
 }

@@ -6,11 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class PatientDBApp extends Application {
     private static Stage stage1;
@@ -21,7 +17,7 @@ public class PatientDBApp extends Application {
 
     private static PatientViewController patientViewController;
 
-    private static SettingsViewController SettingsController;
+    private static SettingsViewController settingsController;
     private static Scene SettingsScene;
 
     @Override
@@ -42,6 +38,7 @@ public class PatientDBApp extends Application {
 
         stage1.setScene(ListScene);
         patientListController.restart();
+        patientListController.settingsRestart();
         patientListController.serialize();
 
 
@@ -70,11 +67,11 @@ public class PatientDBApp extends Application {
             FXMLLoader loader = new FXMLLoader(PatientDBApp.class.getResource("SettingsView.fxml"));
             Parent root = loader.load();
             SettingsScene = new Scene(root);
-            SettingsController = loader.getController();
+            settingsController = loader.getController();
 
             // Your code here: pass the patient to the patientController...
             stage1.setScene(SettingsScene); // the initialize method will get called in here
-            SettingsViewController.setSettings();
+            settingsController.setSettings();
 
         }
         else{

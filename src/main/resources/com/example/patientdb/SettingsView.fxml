@@ -8,6 +8,6 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.patientdb.SettingsViewController">
    <children>
       <Button layoutX="79.0" layoutY="62.0" mnemonicParsing="false" onAction="#DoneClickedOn" text="DONE" />
-      <TextField layoutX="211.0" layoutY="165.0" />
+      <TextField fx:id="settingsType" layoutX="211.0" layoutY="165.0" />
    </children>
 </AnchorPane>
