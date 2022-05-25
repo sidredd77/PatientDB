@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 
 import java.io.*;
@@ -33,7 +34,7 @@ public class PatientListController {
     private static List PatientList;
 
     @FXML
-    private static Label settingsLabel;
+    private Label settingsLabel;
 
     public void initialize() {
 
