@@ -18,6 +18,7 @@
       </TableView>
       <Button fx:id="BtnNew" layoutX="473.0" layoutY="14.0" mnemonicParsing="false" onAction="#buttonPress" text="NEW" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
       <Button layoutX="41.0" layoutY="10.0" mnemonicParsing="false" onAction="#SettingsSceneChange" text="Settings" />
-      <Label fx:id="settingsLabel" layoutX="227.0" layoutY="10.0" prefHeight="26.0" prefWidth="120.0" text="Patient Database" />
+      <Label fx:id="settingsLabel" layoutX="227.0" layoutY="10.0" prefHeight="26.0" prefWidth="309.0" text="Patient Database" />
+      <Button layoutX="130.0" layoutY="10.0" mnemonicParsing="false" onAction="#GraphSceneChange" text="Graph" />
    </children>
 </AnchorPane>

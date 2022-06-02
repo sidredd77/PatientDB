@@ -23,7 +23,7 @@ public class SettingsViewController {
             Settings.setFSize(Integer.parseInt(ageStr));
             try {
                 FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.home") + "/.patientDB" + "/.Settings.ser");
-                ;
+
                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
                 out.writeObject(Settings.getInstance());
                 out.close();

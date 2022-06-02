@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class PatientDBApp extends Application {
     private static Stage stage1;
@@ -19,9 +20,12 @@ public class PatientDBApp extends Application {
 
     private static SettingsViewController settingsController;
     private static Scene SettingsScene;
+    private static Scene GraphScene;
+    private static GraphViewController graphController;
 
     @Override
     public void start(Stage stage) throws IOException {
+
         FXMLLoader loader = new FXMLLoader(PatientDBApp.class.getResource("PatientListView.fxml"));
         stage1 = stage;
         Parent root = loader.load();
@@ -77,6 +81,25 @@ public class PatientDBApp extends Application {
         else{
 
             stage1.setScene(SettingsScene);
+
+        }
+    }
+    public  static void SwitchGraphView(ArrayList<Patient> PatientList) throws IOException{
+        if (GraphScene == null) {
+            FXMLLoader loader = new FXMLLoader(PatientDBApp.class.getResource("GraphView.fxml"));
+            Parent root = loader.load();
+            GraphScene = new Scene(root);
+            graphController = loader.getController();
+
+            // Your code here: pass the patient to the patientController...
+            stage1.setScene(GraphScene); // the initialize method will get called in here
+            GraphViewController.graph(PatientList);
+
+
+        }
+        else{
+
+            stage1.setScene(GraphScene);
 
         }
     }

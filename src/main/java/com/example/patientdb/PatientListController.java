@@ -38,7 +38,7 @@ public class PatientListController {
 
     public void initialize() {
 
-
+        settingsLabel.setFont(new Font((double) Settings.getFSize()));
 
         try {
             FileInputStream fileIn = new FileInputStream(System.getProperty("user.home")+"/.patientDB"+ "/.PatientDB.ser");
@@ -167,5 +167,11 @@ public class PatientListController {
     }
     public void settingsRestart(){
         settingsLabel.setFont(new Font((double) Settings.getFSize()));
+    }
+
+    @FXML
+    public void GraphSceneChange() throws IOException {
+
+        PatientDBApp.SwitchGraphView((ArrayList<Patient>) PatientList);
     }
 }
