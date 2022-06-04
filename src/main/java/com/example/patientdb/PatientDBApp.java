@@ -93,7 +93,7 @@ public class PatientDBApp extends Application {
 
             // Your code here: pass the patient to the patientController...
             stage1.setScene(GraphScene); // the initialize method will get called in here
-            GraphViewController.graph(PatientList);
+            graphController.setGraph(PatientList);
 
 
         }

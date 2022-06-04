@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.patientdb.GraphViewController">
-
+   <children>
+      <BarChart fx:id="chart">
+        <xAxis>
+          <CategoryAxis label="Patients" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis label="Age" side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <Button fx:id="back" layoutX="500.0" layoutY="64.0" mnemonicParsing="false" onAction="#doneClickedON" text="BACK" />
+   </children>
 </AnchorPane>
