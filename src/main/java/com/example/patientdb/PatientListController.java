@@ -172,6 +172,6 @@ public class PatientListController {
     @FXML
     public void GraphSceneChange() throws IOException {
 
-        PatientDBApp.SwitchGraphView((ArrayList<Patient>) PatientList);
+        PatientDBApp.SwitchGraphView(new ArrayList(PatientList));
     }
 }

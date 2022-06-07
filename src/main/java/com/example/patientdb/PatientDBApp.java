@@ -1,6 +1,7 @@
 package com.example.patientdb;
 
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -85,7 +86,7 @@ public class PatientDBApp extends Application {
         }
     }
     public  static void SwitchGraphView(ArrayList<Patient> PatientList) throws IOException{
-        if (GraphScene == null) {
+
             FXMLLoader loader = new FXMLLoader(PatientDBApp.class.getResource("GraphView.fxml"));
             Parent root = loader.load();
             GraphScene = new Scene(root);
@@ -97,12 +98,8 @@ public class PatientDBApp extends Application {
 
 
         }
-        else{
 
-            stage1.setScene(GraphScene);
 
-        }
-    }
 
 
 

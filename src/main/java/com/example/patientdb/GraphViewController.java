@@ -1,5 +1,6 @@
 package com.example.patientdb;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -12,20 +13,21 @@ import java.util.ArrayList;
 
 public class GraphViewController {
     @FXML
-    private BarChart chart;
+    private BarChart<String, Number> chart;
     @FXML
     private Button back;
     public void setGraph(ArrayList<Patient> PatientList){
 
-        XYChart.Series series1 = new XYChart.Series();
-
-
+        XYChart.Series series1 = new XYChart.Series();;
+        series1.setName("Age");
         for(int i = 0; i<PatientList.size(); i++){
-            series1.setName(PatientList.get(i).getFirstName() + PatientList.get(i).getLastName());
+
             series1.getData().add(new XYChart.Data(PatientList.get(i).getLastName(), PatientList.get(i).getAge()));
 
         }
-        chart.getData().addAll(series1);
+
+        chart.getData().add(series1);
+
 
     }
     public void doneClickedON() throws IOException {
